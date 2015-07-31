@@ -29,7 +29,7 @@ $app->get($route, function () use ($app){
 		foreach ($ResultsArray as $PressRelease)
 			{
 			?>
-			<textarea cols="50" rows"25"><?php echo $PressRelease; ?></textarea><br />
+			<textarea cols="150" rows"10"><?php echo $PressRelease; ?></textarea><br />
 			<?php
 
 			$Begin_Tag = '<h1 class="article-box-title">';
@@ -40,26 +40,28 @@ $app->get($route, function () use ($app){
 			$End_Tag = '</span>';
 			$Press_Date = return_between($PressRelease, $Begin_Tag, $End_Tag, INCL);
 
-			$Begin_Tag = '<img class="article-box-img" src=';
+			$Begin_Tag = 'src=';
 			$End_Tag = '>';
 			$Press_Image = return_between($PressRelease, $Begin_Tag, $End_Tag, INCL);
+			$Press_Image = str_replace("src","",$Press_Image);
+			$Press_Image = str_replace("=","",$Press_Image);
+			$Press_Image = str_replace(">","",$Press_Image);
+			$Press_Image = str_replace(chr(34),"",$Press_Image);
+			$Press_Image = trim($Press_Image);
 
-			$Begin_Tag = 'href="';
+			$Begin_Tag = 'href=';
 			$End_Tag = '>';
 			$Press_URL = return_between($PressRelease, $Begin_Tag, $End_Tag, INCL);
+			$Press_URL = str_replace("href","",$Press_URL);
 			$Press_URL = str_replace("=","",$Press_URL);
 			$Press_URL = str_replace(">","",$Press_URL);
 			$Press_URL = str_replace(chr(34),"",$Press_URL);
-
-			$PressPartArray = explode("</span>",$PressRelease);
-			$Press_Detail = $PressPartArray[1];
-			$Press_Detail = str_replace("-- ","",$Press_Detail);
+			$Press_URL = trim($Press_URL);
 
 			$Press_Title = mysql_real_escape_string(trim(strip_tags($Press_Title)));
 			$Press_Date = mysql_real_escape_string(trim(strip_tags($Press_Date)));
 			$Press_URL = mysql_real_escape_string(trim(strip_tags($Press_URL)));
 			$Press_Image = mysql_real_escape_string(trim(strip_tags($Press_Image)));
-			$Press_Detail = mysql_real_escape_string(trim(strip_tags($Press_Detail)));
 
 			//echo $Press_Title . "<br />";
 			//echo $Press_Date . "<br />";
@@ -101,7 +103,6 @@ $app->get($route, function () use ($app){
 			$F = array();
 			$F['date'] = $Press_Date;
 			$F['title'] = $Press_Title;
-			$F['details'] = $Press_Detail;
 			$F['image'] = $Press_Image;
 			$F['url'] = $Press_URL;
 			array_push($ReturnObject, $F);
