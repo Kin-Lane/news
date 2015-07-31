@@ -101,7 +101,7 @@ $app->get($route, function () use ($app){
 			$F = array();
 			$F['date'] = $Press_Date;
 			$F['title'] = $Press_Title;
-			$F['details'] = $Press_Details;
+			$F['details'] = $Press_Detail;
 			$F['image'] = $Press_Image;
 			$F['url'] = $Press_URL;
 			array_push($ReturnObject, $F);
