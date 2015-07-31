@@ -34,8 +34,8 @@ $app->get($route, function () use ($app){
 
 		//echo $Press;
 
-		$Begin_Tag = '<body';
-		$End_Tag = ' </body>';
+		$Begin_Tag = '<div class="middle-reset"></div>';
+		$End_Tag = ' </div>';
 		$ReturnBody = return_between($Press, $Begin_Tag, $End_Tag, EXCL);
 		if($ReturnBody==''){ $ReturnBody = $Press; }
 		//echo $ReturnBody;
