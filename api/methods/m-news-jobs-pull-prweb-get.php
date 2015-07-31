@@ -28,9 +28,6 @@ $app->get($route, function () use ($app){
 
 		foreach ($ResultsArray as $PressRelease)
 			{
-			?>
-			<textarea cols="150" rows"10"><?php echo $PressRelease; ?></textarea><br />
-			<?php
 
 			$Begin_Tag = '<h1 class="article-box-title">';
 			$End_Tag = '</h1>';
@@ -85,7 +82,7 @@ $app->get($route, function () use ($app){
 				}
 			else
 				{
-				$Query = "INSERT INTO news(Post_Date,Title,Author,Summary,Body,Footer,URL)";
+				$Query = "INSERT INTO news(Post_Date,Title,Author,Summary,Body,Footer,URL,Feature_Image)";
 				$Query .= " VALUES(";
 				$Query .= "'" . mysql_real_escape_string($Press_Date) . "',";
 				$Query .= "'" . mysql_real_escape_string($Press_Title) . "',";
@@ -94,10 +91,11 @@ $app->get($route, function () use ($app){
 				$Query .= "'" . mysql_real_escape_string($body) . "',";
 				$Query .= "'" . mysql_real_escape_string($footer) . "',";
 				$Query .= "'" . mysql_real_escape_string($Press_URL) . "'";
+				$Query .= "'" . mysql_real_escape_string($Press_Image) . "'";
 				$Query .= ")";
 				//echo $Query . "<br />";
-			//	mysql_query($Query) or die('Query failed: ' . mysql_error());
-				//$news_id = mysql_insert_id();
+				mysql_query($Query) or die('Query failed: ' . mysql_error());
+				$news_id = mysql_insert_id();
 				}
 
 			$F = array();
