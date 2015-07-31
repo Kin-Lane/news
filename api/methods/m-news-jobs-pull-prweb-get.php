@@ -28,6 +28,9 @@ $app->get($route, function () use ($app){
 
 		foreach ($ResultsArray as $PressRelease)
 			{
+			?>
+			<textarea cols="50" rows"25"><?php echo $PressRelease; ?></textarea><br />
+			<?php
 
 			$Begin_Tag = '<h3>';
 			$End_Tag = '</h3>';
@@ -90,8 +93,8 @@ $app->get($route, function () use ($app){
 				$Query .= "'" . mysql_real_escape_string($Press_URL) . "'";
 				$Query .= ")";
 				//echo $Query . "<br />";
-				mysql_query($Query) or die('Query failed: ' . mysql_error());
-				$news_id = mysql_insert_id();
+			//	mysql_query($Query) or die('Query failed: ' . mysql_error());
+				//$news_id = mysql_insert_id();
 				}
 
 			$F = array();
