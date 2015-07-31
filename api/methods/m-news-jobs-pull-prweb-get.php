@@ -17,12 +17,12 @@ $app->get($route, function () use ($app){
 			}
 
 		$Press = file_get_contents($URL);
-		$Begin_Tag = '<div class="release-content">';
-		$End_Tag = '<div id="pagination">';
+		$Begin_Tag = '<div id="release-list">';
+		$End_Tag = '<div class="pagination pagination-footer">';
 		$Items = return_between($Press, $Begin_Tag, $End_Tag, INCL);
 
-		$beg_tag = '<div class="release-content">';
-		$close_tag = "</div>";
+		$Begin_Tag = '<article class="article-box">';
+		$End_Tag = '</article>';
 
 		$ResultsArray = parse_array($Items, $beg_tag, $close_tag);
 
