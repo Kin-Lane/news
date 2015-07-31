@@ -32,25 +32,31 @@ $app->get($route, function () use ($app){
 			<textarea cols="50" rows"25"><?php echo $PressRelease; ?></textarea><br />
 			<?php
 
-			$Begin_Tag = '<h3>';
-			$End_Tag = '</h3>';
+			<a title="" href="http://www.prweb.com/releases/2015/08/prweb12879212.htm"><h1 class="article-box-title">Link-Assistant.Com Keeps Google Autocomplete, Adds 3 New Keyword Research Methods and Further Improvements to Rank Tracker SEO Software</h1>
+      <p class="article-box-text"><img class="article-box-img" src="http://ww1.prweb.com/prfiles/2015/07/30/12879212/tN_136617_keyword-research-update-fb.png" alt="Link-Assistant.Com Keeps Google Autocomplete, Adds 3 New Keyword Research Methods and Further Improvements to Rank Tracker SEO Software"><span class="article-box-date">July 30, 2015</span>The latest Rank Tracker substantial update keeps Google Autocomplete for Rank Tracker users (even after the API shutdown), adds 3 new techniques to the 17 existing keyword research methods and offers a number of improvements to facilitate the process of finding profitable keywords.</p></a></article></textarea><br />
+			<textarea cols="50" rows"25"><article class="article-box"><a title="" href="http://www.p
+
+			$Begin_Tag = '<h1 class="article-box-title">';
+			$End_Tag = '</h1>';
 			$Press_Title = return_between($PressRelease, $Begin_Tag, $End_Tag, INCL);
 
-			$Begin_Tag = '=';
+			$Begin_Tag = '<span class="article-box-date">';
+			$End_Tag = '</span>';
+			$Press_Date = return_between($PressRelease, $Begin_Tag, $End_Tag, INCL);
+
+			$Begin_Tag = '<img class="article-box-img" src=';
+			$End_Tag = '>';
+			$Press_Image = return_between($PressRelease, $Begin_Tag, $End_Tag, INCL);
+
+			$Begin_Tag = '<a title="" href="';
 			$End_Tag = '>';
 			$Press_URL = return_between($Press_Title, $Begin_Tag, $End_Tag, INCL);
 			$Press_URL = str_replace("=","",$Press_URL);
 			$Press_URL = str_replace(">","",$Press_URL);
 			$Press_URL = str_replace(chr(34),"",$Press_URL);
 
-			$Begin_Tag = '<p class="extra-details">';
-			$End_Tag = '</p>';
-			$Press_Details = return_between($PressRelease, $Begin_Tag, $End_Tag, INCL);
-
-			$Press_Detail_Array = explode("</span>",$Press_Details);
-			$Press_Date = trim(strip_tags($Press_Detail_Array[0]));
-			//echo $Press_Date . "<br />";
-			$Press_Date = date('Y-m-d H:i:s',strtotime($Press_Date));
+			$PressPartArray = explode("</span>");
+			$Press_Details = $PressPartArray[1];
 
 			$Press_Detail = trim($Press_Detail_Array[1]);
 			$Press_Detail = str_replace("-- ","",$Press_Detail);
@@ -58,6 +64,7 @@ $app->get($route, function () use ($app){
 			$Press_Title = mysql_real_escape_string(trim(strip_tags($Press_Title)));
 			$Press_Date = mysql_real_escape_string(trim(strip_tags($Press_Date)));
 			$Press_URL = mysql_real_escape_string(trim(strip_tags($Press_URL)));
+			$Press_Image = mysql_real_escape_string(trim(strip_tags($Press_Image)));
 			$Press_Detail = mysql_real_escape_string(trim(strip_tags($Press_Detail)));
 
 			//echo $Press_Title . "<br />";
