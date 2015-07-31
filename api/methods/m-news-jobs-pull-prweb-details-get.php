@@ -42,7 +42,7 @@ $app->get($route, function () use ($app){
 		$body = '<p>' . $ReturnBody . '</p><p><em><strong>Source: </strong><a href="' . $url . '">PRWeb</a></em></p>';
 
 		$UpdateQuery = "UPDATE news SET Body = '" . mysql_real_escape_string($body)  . "' WHERE ID = " . $news_id;
-		echo $UpdateQuery . "<br />";
+		//echo $UpdateQuery . "<br />";
 		$UpdateResult = mysql_query($UpdateQuery) or die('Query failed: ' . mysql_error());
 
 		$F = array();
