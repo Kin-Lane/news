@@ -49,8 +49,6 @@ $app->get($route, function () use ($app){
 			$Press_Title = mysql_real_escape_string(trim(strip_tags($Press_Title)));
 			$Press_Date = mysql_real_escape_string(trim(strip_tags($Press_Date)));
 			$Press_URL = mysql_real_escape_string(trim(strip_tags($Press_URL)));
-			$Press_Image = mysql_real_escape_string(trim(strip_tags($Press_Image)));
-
 			//echo $Press_Title . "<br />";
 			//echo $Press_Date . "<br />";
 			//echo $Press_URL . "<br />";
@@ -91,7 +89,6 @@ $app->get($route, function () use ($app){
 			$F = array();
 			$F['date'] = $Press_Date;
 			$F['title'] = $Press_Title;
-			$F['image'] = $Press_Image;
 			$F['url'] = $Press_URL;
 			array_push($ReturnObject, $F);
 
