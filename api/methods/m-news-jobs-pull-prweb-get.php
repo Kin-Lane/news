@@ -48,7 +48,7 @@ $app->get($route, function () use ($app){
 			$End_Tag = '>';
 			$Press_Image = return_between($PressRelease, $Begin_Tag, $End_Tag, INCL);
 
-			$Begin_Tag = '<a title="" href="';
+			$Begin_Tag = '<a title="" href=';
 			$End_Tag = '>';
 			$Press_URL = return_between($Press_Title, $Begin_Tag, $End_Tag, INCL);
 			$Press_URL = str_replace("=","",$Press_URL);
@@ -113,7 +113,7 @@ $app->get($route, function () use ($app){
 			}
 		}
 
-	$app->response()->header("Content-Type", "application/json");
+	//$app->response()->header("Content-Type", "application/json");
 	echo stripslashes(format_json(json_encode($ReturnObject)));
 
 	});
