@@ -46,12 +46,12 @@ $app->get($route, function () use ($app){
 
 			$Begin_Tag = '<a title="" href="';
 			$End_Tag = '>';
-			$Press_URL = return_between($Press_Title, $Begin_Tag, $End_Tag, INCL);
+			$Press_URL = return_between($PressRelease, $Begin_Tag, $End_Tag, INCL);
 			$Press_URL = str_replace("=","",$Press_URL);
 			$Press_URL = str_replace(">","",$Press_URL);
 			$Press_URL = str_replace(chr(34),"",$Press_URL);
 
-			$PressPartArray = explode("</span>");
+			$PressPartArray = explode("</span>",$PressRelease);
 			$Press_Details = $PressPartArray[1];
 
 			$Press_Detail = trim($Press_Detail_Array[1]);
