@@ -37,15 +37,6 @@ $app->get($route, function () use ($app){
 			$End_Tag = '</span>';
 			$Press_Date = return_between($PressRelease, $Begin_Tag, $End_Tag, INCL);
 
-			$Begin_Tag = 'src=';
-			$End_Tag = '>';
-			$Press_Image = return_between($PressRelease, $Begin_Tag, $End_Tag, INCL);
-			$Press_Image = str_replace("src","",$Press_Image);
-			$Press_Image = str_replace("=","",$Press_Image);
-			$Press_Image = str_replace(">","",$Press_Image);
-			$Press_Image = str_replace(chr(34),"",$Press_Image);
-			$Press_Image = trim($Press_Image);
-
 			$Begin_Tag = 'href=';
 			$End_Tag = '>';
 			$Press_URL = return_between($PressRelease, $Begin_Tag, $End_Tag, INCL);
@@ -82,7 +73,7 @@ $app->get($route, function () use ($app){
 				}
 			else
 				{
-				$Query = "INSERT INTO news(Post_Date,Title,Author,Summary,Body,Footer,URL,Feature_Image)";
+				$Query = "INSERT INTO news(Post_Date,Title,Author,Summary,Body,Footer,URL)";
 				$Query .= " VALUES(";
 				$Query .= "'" . mysql_real_escape_string($Press_Date) . "',";
 				$Query .= "'" . mysql_real_escape_string($Press_Title) . "',";
@@ -90,8 +81,7 @@ $app->get($route, function () use ($app){
 				$Query .= "'" . mysql_real_escape_string($summary) . "',";
 				$Query .= "'" . mysql_real_escape_string($body) . "',";
 				$Query .= "'" . mysql_real_escape_string($footer) . "',";
-				$Query .= "'" . mysql_real_escape_string($Press_URL) . "',";
-				$Query .= "'" . mysql_real_escape_string($Press_Image) . "'";
+				$Query .= "'" . mysql_real_escape_string($Press_URL) . "'";
 				$Query .= ")";
 				//echo $Query . "<br />";
 				mysql_query($Query) or die('Query failed: ' . mysql_error());
@@ -108,7 +98,7 @@ $app->get($route, function () use ($app){
 			}
 		}
 
-	//$app->response()->header("Content-Type", "application/json");
+	$app->response()->header("Content-Type", "application/json");
 	echo stripslashes(format_json(json_encode($ReturnObject)));
 
 	});
