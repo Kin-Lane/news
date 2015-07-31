@@ -21,8 +21,8 @@ $app->get($route, function () use ($app){
 		$End_Tag = '<div class="pagination pagination-footer">';
 		$Items = return_between($Press, $Begin_Tag, $End_Tag, INCL);
 
-		$Begin_Tag = '<article class="article-box">';
-		$End_Tag = '</article>';
+		$beg_tag = '<article class="article-box">';
+		$close_tag = '</article>';
 
 		$ResultsArray = parse_array($Items, $beg_tag, $close_tag);
 
