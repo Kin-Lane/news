@@ -44,7 +44,7 @@ $app->get($route, function () use ($app){
 			$End_Tag = '>';
 			$Press_Image = return_between($PressRelease, $Begin_Tag, $End_Tag, INCL);
 
-			$Begin_Tag = '<a title="" href="';
+			$Begin_Tag = 'href="';
 			$End_Tag = '>';
 			$Press_URL = return_between($PressRelease, $Begin_Tag, $End_Tag, INCL);
 			$Press_URL = str_replace("=","",$Press_URL);
@@ -101,6 +101,8 @@ $app->get($route, function () use ($app){
 			$F = array();
 			$F['date'] = $Press_Date;
 			$F['title'] = $Press_Title;
+			$F['details'] = $Press_Details;
+			$F['image'] = $Press_Image;
 			$F['url'] = $Press_URL;
 			array_push($ReturnObject, $F);
 
