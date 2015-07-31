@@ -90,7 +90,7 @@ $app->get($route, function () use ($app){
 				$Query .= "'" . mysql_real_escape_string($summary) . "',";
 				$Query .= "'" . mysql_real_escape_string($body) . "',";
 				$Query .= "'" . mysql_real_escape_string($footer) . "',";
-				$Query .= "'" . mysql_real_escape_string($Press_URL) . "'";
+				$Query .= "'" . mysql_real_escape_string($Press_URL) . "',";
 				$Query .= "'" . mysql_real_escape_string($Press_Image) . "'";
 				$Query .= ")";
 				//echo $Query . "<br />";
