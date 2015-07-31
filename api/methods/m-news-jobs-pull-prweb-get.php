@@ -53,8 +53,6 @@ $app->get($route, function () use ($app){
 
 			$PressPartArray = explode("</span>",$PressRelease);
 			$Press_Details = $PressPartArray[1];
-
-			$Press_Detail = trim($Press_Detail_Array[1]);
 			$Press_Detail = str_replace("-- ","",$Press_Detail);
 
 			$Press_Title = mysql_real_escape_string(trim(strip_tags($Press_Title)));
