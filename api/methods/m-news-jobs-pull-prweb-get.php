@@ -60,8 +60,8 @@ $app->get($route, function () use ($app){
 			$body .= '<p><em><strong>Source: </strong><a href="' . $Press_URL . '">PRWeb</a></em></p>';
 			$footer = "";
 
-		  	$Query = "SELECT * FROM news WHERE Title = '" . mysql_real_escape_string($Press_Title) . "' AND Post_Date = '" . mysql_real_escape_string($Press_Date) . "'";
-			//echo $Query . "<br />";
+		  $Query = "SELECT * FROM news WHERE Title = '" . mysql_real_escape_string($Press_Title) . "' AND Post_Date = '" . mysql_real_escape_string($Press_Date) . "'";
+			echo $Query . "<br />";
 			$Database = mysql_query($Query) or die('Query failed: ' . mysql_error());
 
 			if($Database && mysql_num_rows($Database))
@@ -81,7 +81,7 @@ $app->get($route, function () use ($app){
 				$Query .= "'" . mysql_real_escape_string($footer) . "',";
 				$Query .= "'" . mysql_real_escape_string($Press_URL) . "'";
 				$Query .= ")";
-				//echo $Query . "<br />";
+				echo $Query . "<br />";
 				mysql_query($Query) or die('Query failed: ' . mysql_error());
 				$news_id = mysql_insert_id();
 				}
