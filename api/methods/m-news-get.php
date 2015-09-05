@@ -45,6 +45,28 @@ $app->get($route, function ()  use ($app){
 		$archive = $Database['Archive'];
 		$image = $Database['Feature_Image'];
 
+		$F['tags'] = array();
+
+		$TagQuery = "SELECT t.tag_id, t.tag from tags t";
+		$TagQuery .= " INNER JOIN news_tag_pivot ntp ON t.tag_id = ntp.tag_id";
+		$TagQuery .= " WHERE ntp.News_ID = '" . $news_id;
+		$TagQuery .= " ORDER BY t.tag DESC";
+		$TagResult = mysql_query($TagQuery) or die('Query failed: ' . mysql_error());
+
+		while ($Tag = mysql_fetch_assoc($TagResult))
+			{
+			$thistag = $Tag['tag'];
+
+			$T = array();
+			$T = $thistag;
+			array_push($F['tags'], $T);
+			//echo $thistag . "<br />";
+			if($thistag=='Archive')
+				{
+				$archive = 1;
+				}
+			}
+
 		// manipulation zone
 
 		$host = $_SERVER['HTTP_HOST'];
@@ -64,28 +86,6 @@ $app->get($route, function ()  use ($app){
 		$F['build_page'] = $buildpage;
 		$F['show_on_site'] = $showonsite;
 		$F['archive'] = $archive;
-
-		$F['tags'] = array();
-
-		$TagQuery = "SELECT t.tag_id, t.tag from tags t";
-		$TagQuery .= " INNER JOIN news_tag_pivot ntp ON t.tag_id = ntp.tag_id";
-		$TagQuery .= " WHERE ntp.News_ID = " . $news_id;
-		$TagQuery .= " ORDER BY t.tag DESC";
-		$TagResult = mysql_query($TagQuery) or die('Query failed: ' . mysql_error());
-
-		while ($Tag = mysql_fetch_assoc($TagResult))
-			{
-			$thistag = $Tag['tag'];
-
-			$T = array();
-			$T = $thistag;
-			array_push($F['tags'], $T);
-			//echo $thistag . "<br />";
-			if($thistag=='Archive')
-				{
-				$archive = 1;
-				}
-			}
 
 		array_push($ReturnObject, $F);
 		}
