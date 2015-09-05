@@ -49,7 +49,7 @@ $app->get($route, function ()  use ($app){
 
 		$TagQuery = "SELECT t.tag_id, t.tag from tags t";
 		$TagQuery .= " INNER JOIN news_tag_pivot ntp ON t.tag_id = ntp.tag_id";
-		$TagQuery .= " WHERE ntp.News_ID = '" . $news_id;
+		$TagQuery .= " WHERE ntp.News_ID = " . $news_id;
 		$TagQuery .= " ORDER BY t.tag DESC";
 		$TagResult = mysql_query($TagQuery) or die('Query failed: ' . mysql_error());
 
