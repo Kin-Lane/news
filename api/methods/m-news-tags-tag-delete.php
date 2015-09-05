@@ -20,6 +20,9 @@ $app->delete($route, function ($tag)  use ($app){
 		$DeleteQuery = "DELETE FROM news_tag_pivot WHERE Tag_ID = " . $Tag_ID;
 		$DeleteResult = mysql_query($DeleteQuery) or die('Query failed: ' . mysql_error());
 
+		$host = $_SERVER['HTTP_HOST'];
+		$tag_id = prepareIdOut($tag_id,$host);
+
 		$F = array();
 		$F['tag_id'] = $Tag_ID;
 		$F['tag'] = $Tag_Text;

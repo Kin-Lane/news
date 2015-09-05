@@ -2,6 +2,9 @@
 $route = '/news/:news_id/tags/';
 $app->post($route, function ($News_ID)  use ($app){
 
+	$host = $_SERVER['HTTP_HOST'];
+	$news_id = prepareIdIn($news_id,$host);
+
 	$ReturnObject = array();
 
  	$request = $app->request();
@@ -16,17 +19,17 @@ $app->post($route, function ($News_ID)  use ($app){
 		if($CheckTagResults && mysql_num_rows($CheckTagResults))
 			{
 			$Tag = mysql_fetch_assoc($CheckTagResults);
-			$Tag_ID = $Tag['Tag_ID'];
+			$tag_id = $Tag['Tag_ID'];
 			}
 		else
 			{
 
 			$query = "INSERT INTO tags(Tag) VALUES('" . trim($_POST['Tag']) . "'); ";
 			mysql_query($query) or die('Query failed: ' . mysql_error());
-			$Tag_ID = mysql_insert_id();
+			$tag_id = mysql_insert_id();
 			}
 
-		$CheckTagPivotQuery = "SELECT * FROM news_tag_pivot where Tag_ID = " . trim($Tag_ID) . " AND News_ID = " . trim($News_ID);
+		$CheckTagPivotQuery = "SELECT * FROM news_tag_pivot where Tag_ID = " . trim($tag_id) . " AND News_ID = " . trim($News_ID);
 		$CheckTagPivotResult = mysql_query($CheckTagPivotQuery) or die('Query failed: ' . mysql_error());
 
 		if($CheckTagPivotResult && mysql_num_rows($CheckTagPivotResult))
@@ -35,12 +38,14 @@ $app->post($route, function ($News_ID)  use ($app){
 			}
 		else
 			{
-			$query = "INSERT INTO news_tag_pivot(Tag_ID,News_ID) VALUES(" . $Tag_ID . "," . $News_ID . "); ";
+			$query = "INSERT INTO news_tag_pivot(Tag_ID,News_ID) VALUES(" . $tag_id . "," . $News_ID . "); ";
 			mysql_query($query) or die('Query failed: ' . mysql_error());
 			}
 
+		$tag_id = prepareIdOut($tag_id,$host);
+
 		$F = array();
-		$F['tag_id'] = $Tag_ID;
+		$F['tag_id'] = $tag_id;
 		$F['tag'] = $tag;
 		$F['news_count'] = 0;
 

@@ -2,6 +2,9 @@
 $route = '/news/:news_id/tags/';
 $app->get($route, function ($news_id)  use ($app){
 
+	$host = $_SERVER['HTTP_HOST'];
+	$news_id = prepareIdIn($news_id,$host);
+
 	$ReturnObject = array();
 
  	$request = $app->request();
@@ -16,11 +19,13 @@ $app->get($route, function ($news_id)  use ($app){
 	while ($Database = mysql_fetch_assoc($DatabaseResult))
 		{
 
-		$Tag_ID = $Database['Tag_ID'];
+		$tag_id = $Database['Tag_ID'];
 		$Tag_Text = $Database['Tag'];
 
+		$tag_id = prepareIdOut($tag_id,$host);
+
 		$F = array();
-		$F['tag_id'] = $Tag_ID;
+		$F['tag_id'] = $tag_id;
 		$F['tag'] = $Tag_Text;
 
 		array_push($ReturnObject, $F);

@@ -2,6 +2,9 @@
 $route = '/news/:news_id/';
 $app->delete($route, function ($news_id) use ($app){
 
+	$host = $_SERVER['HTTP_HOST'];
+	$news_id = prepareIdIn($news_id,$host);
+
 	$Add = 1;
 	$ReturnObject = array();
 

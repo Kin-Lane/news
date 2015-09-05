@@ -2,6 +2,9 @@
 $route = '/news/:news_id/';
 $app->get($route, function ($news_id)  use ($app){
 
+	$host = $_SERVER['HTTP_HOST'];
+	$news_id = prepareIdIn($news_id,$host);
+
 	$ReturnObject = array();
 
 	$Query = "SELECT * FROM news WHERE ID = " . $news_id;
@@ -29,6 +32,8 @@ $app->get($route, function ($news_id)  use ($app){
 		$archive = $Database['Archive'];
 
 		// manipulation zone
+
+		$news_id = prepareIdOut($news_id,$host);
 
 		$F = array();
 		$F['news_id'] = $news_id;

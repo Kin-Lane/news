@@ -48,6 +48,9 @@ $app->get($route, function ()  use ($app){
 
 		// manipulation zone
 
+		$host = $_SERVER['HTTP_HOST'];
+		$news_id = prepareIdOut($news_id,$host);
+
 		$F = array();
 		$F['news_id'] = $news_id;
 		$F['post_date'] = $post_date;

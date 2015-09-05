@@ -25,6 +25,9 @@ $app->get($route, function ()  use ($app){
 		$tag = $Database['Tag'];
 		$news_count = $Database['News_Count'];
 
+		$host = $_SERVER['HTTP_HOST'];
+		$news_id = prepareIdOut($news_id,$host);
+
 		$F = array();
 		$F['tag_id'] = $tag_id;
 		$F['tag'] = $tag;
