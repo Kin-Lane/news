@@ -31,28 +31,6 @@ $app->get($route, function ($news_id)  use ($app){
 		$showonsite = $Database['Show_On_Site'];
 		$archive = $Database['Archive'];
 
-		// manipulation zone
-
-		$news_id = prepareIdOut($news_id,$host);
-
-		$F = array();
-		$F['news_id'] = $news_id;
-		$F['post_date'] = $post_date;
-		$F['title'] = $title;
-		$F['author'] = $author;
-		$F['summary'] = $summary;
-		$F['body'] = $body;
-		$F['url'] = $url;
-		$F['footer'] = $footer;
-		$F['status'] = $status;
-		$F['image'] = $image;
-		$F['build_page'] = $buildpage;
-		$F['github_build'] = $githubbuild;
-		$F['twitter_build'] = $twitterbuild;
-		$F['linkedin_build'] = $linkedinbuild;
-		$F['show_on_site'] = $showonsite;
-		$F['archive'] = $archive;
-
 		$F['tags'] = array();
 
 		$TagQuery = "SELECT t.tag_id, t.tag from tags t";
@@ -74,6 +52,28 @@ $app->get($route, function ($news_id)  use ($app){
 				$archive = 1;
 				}
 			}
+
+		// manipulation zone
+
+		$news_id = prepareIdOut($news_id,$host);
+
+		$F = array();
+		$F['news_id'] = $news_id;
+		$F['post_date'] = $post_date;
+		$F['title'] = $title;
+		$F['author'] = $author;
+		$F['summary'] = $summary;
+		$F['body'] = $body;
+		$F['url'] = $url;
+		$F['footer'] = $footer;
+		$F['status'] = $status;
+		$F['image'] = $image;
+		$F['build_page'] = $buildpage;
+		$F['github_build'] = $githubbuild;
+		$F['twitter_build'] = $twitterbuild;
+		$F['linkedin_build'] = $linkedinbuild;
+		$F['show_on_site'] = $showonsite;
+		$F['archive'] = $archive;
 
 		$ReturnObject = $F;
 		}
