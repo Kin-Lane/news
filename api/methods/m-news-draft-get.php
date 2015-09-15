@@ -42,24 +42,6 @@ $app->get($route, function ()  use ($app){
 		$showonsite = $Database['Show_On_Site'];
 		$image = $Database['Feature_Image'];
 
-		// manipulation zone
-
-		$host = $_SERVER['HTTP_HOST'];
-		$news_id = prepareIdOut($news_id,$host);
-
-		$F = array();
-		$F['news_id'] = $news_id;
-		$F['post_date'] = $post_date;
-		$F['title'] = $title;
-		$F['author'] = $author;
-		$F['summary'] = $summary;
-		$F['body'] = $body;
-		$F['footer'] = $footer;
-		$F['status'] = $status;
-		$F['image'] = $image;
-		$F['build_page'] = $buildpage;
-		$F['show_on_site'] = $showonsite;
-
 		$F['tags'] = array();
 
 		$TagQuery = "SELECT t.tag_id, t.tag from tags t";
@@ -81,6 +63,24 @@ $app->get($route, function ()  use ($app){
 				$archive = 1;
 				}
 			}
+
+		// manipulation zone
+
+		$host = $_SERVER['HTTP_HOST'];
+		$news_id = prepareIdOut($news_id,$host);
+
+		$F = array();
+		$F['news_id'] = $news_id;
+		$F['post_date'] = $post_date;
+		$F['title'] = $title;
+		$F['author'] = $author;
+		$F['summary'] = $summary;
+		$F['body'] = $body;
+		$F['footer'] = $footer;
+		$F['status'] = $status;
+		$F['image'] = $image;
+		$F['build_page'] = $buildpage;
+		$F['show_on_site'] = $showonsite;
 
 		array_push($ReturnObject, $F);
 		}
