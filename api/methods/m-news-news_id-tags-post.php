@@ -1,6 +1,6 @@
 <?php
 $route = '/news/:news_id/tags/';
-$app->post($route, function ($News_ID)  use ($app){
+$app->post($route, function ($news_id)  use ($app){
 
 	$host = $_SERVER['HTTP_HOST'];
 	$news_id = prepareIdIn($news_id,$host);
@@ -29,7 +29,7 @@ $app->post($route, function ($News_ID)  use ($app){
 			$tag_id = mysql_insert_id();
 			}
 
-		$CheckTagPivotQuery = "SELECT * FROM news_tag_pivot where Tag_ID = " . trim($tag_id) . " AND News_ID = " . trim($News_ID);
+		$CheckTagPivotQuery = "SELECT * FROM news_tag_pivot where Tag_ID = " . trim($tag_id) . " AND News_ID = " . trim($news_id);
 		$CheckTagPivotResult = mysql_query($CheckTagPivotQuery) or die('Query failed: ' . mysql_error());
 
 		if($CheckTagPivotResult && mysql_num_rows($CheckTagPivotResult))
@@ -38,7 +38,7 @@ $app->post($route, function ($News_ID)  use ($app){
 			}
 		else
 			{
-			$query = "INSERT INTO news_tag_pivot(Tag_ID,News_ID) VALUES(" . $tag_id . "," . $News_ID . "); ";
+			$query = "INSERT INTO news_tag_pivot(Tag_ID,News_ID) VALUES(" . $tag_id . "," . $news_id . "); ";
 			mysql_query($query) or die('Query failed: ' . mysql_error());
 			}
 
