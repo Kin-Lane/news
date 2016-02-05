@@ -9,7 +9,7 @@
   "host": "news.api.kinlane.com",
   "basePath": "/",
   "schemes": [
-    "https"
+    "http"
   ],
   "produces": [
     "application/json"
@@ -205,7 +205,7 @@
             "description": "which field to sort by",
             "required": false,
             "type": "string"
-          }          
+          }
         ],
         "responses": {
           "200": {
@@ -263,7 +263,7 @@
             "description": "which field to sort by",
             "required": false,
             "type": "string"
-          }          
+          }
         ],
         "responses": {
           "200": {
@@ -648,7 +648,7 @@
             "description": "your appkey for accessing the news",
             "required": true,
             "type": "string"
-          },        
+          },
           {
             "name": "week",
             "in": "query",
@@ -662,7 +662,7 @@
             "description": "the year to retrieve tags by",
             "required": false,
             "type": "string"
-          }          
+          }
         ],
         "responses": {
           "200": {
