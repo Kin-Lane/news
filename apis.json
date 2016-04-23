@@ -1,4 +1,4 @@
-[{
+{
 	"name": "Kin Lane News API",
 	"description": "I curate news from across the blogs I read, the interesting Tweets I find, and across the press release sites I monitor. The goal is to bring in as much quality content as I can and then add my own eye towards what is interesting. The content available via this API is the results of that. The API news from across the sector, that I am reading and felt worth sharing.",
 	"image": "https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-news-icon.png",
@@ -6,7 +6,7 @@
 	"tags": ["Kin Lane News API"],
 	"created": "2016-04-04",
 	"modified": "2016-04-04",
-	"url": "https://kin-lane.github.io/news/"
+	"url": "https://kin-lane.github.io/news/",
 	"specificationVersion": "0.14",
 	"apis": [{
 		"name": "Kin Lane News API",
@@ -117,4 +117,4 @@
 		"x-twitter": "apievangelist",
 		"email": "info@apievangelist.com"
 	}]
-}]
+}
